@@ -10,4 +10,5 @@ OFBiz参考实现的简易框架
 
 ![OFBiz参考实现的简易框架](http://wiki.huihoo.com/images/b/be/Ofbiz-reference-implementation-framework.png)
 
-http://code.huihoo.com/huihoo/ofbiz-smart
+* 下载文档：https://github.com/huihoo/ofbiz-smart/blob/master/ofbiz-smart/OFBiz-Smart-Manual.odt
+* 支持社区：http://code.huihoo.com/huihoo/ofbiz-smart
