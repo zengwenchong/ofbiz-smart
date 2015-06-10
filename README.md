@@ -28,4 +28,4 @@ OFBiz Smart：一个基于Apache OFBiz框架设计思想，小巧，灵活，强
   框架开发的一套标准电商应用，移动H5的商城前端，PC版的商城后台。
   
 #### ofbiz-smart-ofbiz-ecommerce-restfull-api
-  框架开发的，基于Apache OFBiz 14.12版本之上的，标准电商业务的 restfull api. 支持APP,服务端应用调用。无缝对接Apache OFBiz 14.12后业务系统。
+  框架开发的，基于Apache OFBiz 14.12版本之上的，标准电商业务的 restfull api. 支持APP,服务端应用调用。无缝对接Apache OFBiz 14.12后台业务系统。
