@@ -1,0 +1,21 @@
+ofbiz-smart license - 	Apache License 2.0.
+
+Libraries used:
+
+MySql-Connector - 	BSD license
+ASM 			- 	BSD license
+JUnit 			- 	Apache License 2.0
+Mockito 		- 	MIT
+H2     			- 	MPL 2.0 And EPL 1.0
+Apache-Common-DBCP2  - Apache License 2.0
+C3P0            -   LGPL2.1 OR EPL 1.0
+
+Partial Source Code Referenced[部分代码参考，引用或是修改了以下的框架]:
+
+Apache OFBiz    -   Apache License 2.0
+  http://ofbiz.apache.org
+
+Activejdbc      -   Apache License 2.0
+  http://javalite.io/activejdbc
+
+
