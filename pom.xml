@@ -173,5 +173,6 @@
     <module>ofbiz-smart-examples</module>
     <module>ofbiz-smart-performance</module>
     <module>ofbiz-smart-ecommerce</module>
-  </modules>
+    <module>ofbiz-smart-ofbiz-ecommerce-restfull-api</module>
+	</modules>
 </project>
