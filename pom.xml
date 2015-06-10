@@ -170,5 +170,6 @@
 	</reporting>
 	<modules>
     <module>ofbiz-smart-framework</module>
+    <module>ofbiz-smart-examples</module>
   </modules>
 </project>
