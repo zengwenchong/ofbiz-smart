@@ -171,5 +171,6 @@
 	<modules>
     <module>ofbiz-smart-framework</module>
     <module>ofbiz-smart-examples</module>
+    <module>ofbiz-smart-performance</module>
   </modules>
 </project>
