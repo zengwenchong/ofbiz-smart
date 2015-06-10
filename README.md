@@ -29,3 +29,5 @@ OFBiz Smart：一个基于Apache OFBiz框架设计思想，小巧，灵活，强
   
 #### ofbiz-smart-ofbiz-ecommerce-restfull-api
   框架开发的，基于Apache OFBiz 14.12版本之上的，标准电商业务的 restfull api. 支持APP,服务端应用调用。无缝对接Apache OFBiz 14.12后台业务系统。
+  
+灰狐OFBiz Smart社区：http://code.huihoo.com/huihoo/ofbiz-smart  
