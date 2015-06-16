@@ -174,5 +174,6 @@
     <module>ofbiz-smart-performance</module>
     <module>ofbiz-smart-ecommerce</module>
     <module>ofbiz-smart-ofbiz-ecommerce-restfull-api</module>
+    <module>ofbiz-smart-scaffold</module>
 	</modules>
 </project>
