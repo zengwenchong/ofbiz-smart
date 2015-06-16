@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.huihoo</groupId>
@@ -51,6 +52,25 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- slf4j -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.classic.version}</version>
+			</dependency>
+			<!-- sl4fj end -->
+			
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -169,12 +189,12 @@
 		</plugins>
 	</reporting>
 	<modules>
-    <module>ofbiz-smart-framework</module>
-    <module>ofbiz-smart-examples</module>
-    <module>ofbiz-smart-performance</module>
-    <module>ofbiz-smart-ecommerce</module>
-    <module>ofbiz-smart-ofbiz-ecommerce-restfull-api</module>
-    <module>ofbiz-smart-scaffold</module>
+		<module>ofbiz-smart-framework</module>
+		<module>ofbiz-smart-examples</module>
+		<module>ofbiz-smart-performance</module>
+		<module>ofbiz-smart-ecommerce</module>
+		<module>ofbiz-smart-ofbiz-ecommerce-restfull-api</module>
+		<module>ofbiz-smart-scaffold</module>
     <module>ofbiz-smart-universal-biz</module>
 	</modules>
 </project>
