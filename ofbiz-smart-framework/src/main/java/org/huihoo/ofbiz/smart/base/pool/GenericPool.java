@@ -1,10 +1,8 @@
-package org.huihoo.ofbiz.smart.base;
+package org.huihoo.ofbiz.smart.base.pool;
 
 /**
  * <p>
  * 一般对象池接口 <br/>
- * <a href=
- * 'http://www.javacodegeeks.com/2012/09/a-generic-and-concurrent-object-pool.html'>从该文章中获得灵感</a>
  * </p>
  * 
  * @author huangbaihua
@@ -31,8 +29,10 @@ public interface GenericPool<T> {
 
   /**
    * 释放对象并将它返回到对象池中
+   * 
+   * @param t 要释放的对象
    */
-  void release();
+  void release(T t);
 
   /**
    * 关闭对象池
