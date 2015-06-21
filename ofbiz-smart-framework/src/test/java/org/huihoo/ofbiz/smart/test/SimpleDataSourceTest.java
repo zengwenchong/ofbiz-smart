@@ -38,8 +38,12 @@ public class SimpleDataSourceTest {
         }
       }
       
+     
       
       try {
+        
+        System.out.println(conn.isClosed());
+        
         dataSource.close();
       } catch (Exception e) {
         e.printStackTrace();

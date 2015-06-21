@@ -20,8 +20,10 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 
 import org.huihoo.ofbiz.smart.base.pool.GenericPool;
+import org.huihoo.ofbiz.smart.base.util.Log;
 
 public class PooledConnection<C extends Connection> implements Connection {
+  private static final String tag = PooledConnection.class.getName();
   private volatile C conn = null;
   private volatile boolean closed = false;
   private volatile GenericPool<Connection> pool;
@@ -95,16 +97,38 @@ public class PooledConnection<C extends Connection> implements Connection {
   }
 
   @Override
-  public void close() throws SQLException {
+  public synchronized void close() throws SQLException {
+    boolean isClosedInternal = conn.isClosed();
+    if(isClosedInternal){
+      return ;
+    }
+    
     if (!closed) {
-      pool.release(conn);
+      try{
+        pool.release(conn);
+      }finally{
+        //FIXME ??? 释放连接的时间，是否有必要设置自动提交事务 ???
+        closed = true;
+      }
     }
   }
 
   @Override
   public boolean isClosed() throws SQLException {
-    closed = conn.isClosed();
-    return closed;
+    boolean isClosedInternal = conn.isClosed();
+    if(isClosedInternal){
+      Log.i(tag, "Internal connection is closed.");
+      return true;
+    }
+    
+    if(closed){
+      //FIXME 保险起见，再调用一次？
+      close();
+      Log.i(tag, "Internal connection [%s] is returned to pool.",toString());
+      return true;
+    }
+    
+    return false;
   }
 
   @Override
@@ -321,4 +345,39 @@ public class PooledConnection<C extends Connection> implements Connection {
   public int getNetworkTimeout() throws SQLException {
     return conn.getNetworkTimeout();
   }
+  
+  @Override
+  public String toString(){
+    String s = null;
+    
+    if(conn != null){
+      try{
+        if(conn.isClosed()){
+          s = "connection is closed";
+        }else{
+          StringBuilder sb = new StringBuilder();
+          sb.append(hashCode());
+          DatabaseMetaData meta = conn.getMetaData();
+          if(meta != null){
+            sb.append(",URL=");
+            sb.append(meta.getURL());
+            sb.append(",Username=");
+            sb.append(meta.getUserName());
+            sb.append(",");
+            sb.append(meta.getDriverName());
+            s = sb.toString();
+          }
+        }
+      }catch(SQLException ingore){
+        
+      }
+    }
+    
+    if(s == null){
+      s = super.toString();
+    }
+      
+    return s;
+  }
+  
 }
