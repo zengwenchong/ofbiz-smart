@@ -117,14 +117,14 @@ public class PooledConnection<C extends Connection> implements Connection {
   public boolean isClosed() throws SQLException {
     boolean isClosedInternal = conn.isClosed();
     if(isClosedInternal){
-      Log.i(tag, "Internal connection is closed.");
+      Log.d(tag, "Internal connection is closed.");
       return true;
     }
     
     if(closed){
       //FIXME 保险起见，再调用一次？
       close();
-      Log.i(tag, "Internal connection [%s] is returned to pool.",toString());
+      Log.d(tag, "Internal connection [%s] is returned to pool.",toString());
       return true;
     }
     
