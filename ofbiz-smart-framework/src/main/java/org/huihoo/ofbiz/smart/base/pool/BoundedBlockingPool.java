@@ -161,6 +161,7 @@ public class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingP
     for(T t : objectPool){
       sb.append(t.toString()).append(C.LINE_SEPARATOR);
     }
+    sb.append(">>>>>>>>>>>>>>>>>>End<<<<<<<<<<<<<<<<<<");
     Log.i(tag, sb.toString());
   }
 
