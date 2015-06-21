@@ -7,22 +7,16 @@ import java.io.Serializable;
  * 表关联类，它定义了表之间的关联关系 
  * </p>
  * 
- * @author huangbaihua
+ * @author  huangbaihua
  * @version 1.0
- * @since 1.0
+ * @since   1.0
  */
 public class Association implements Serializable {
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
-
   /** 要关联的表的名称 */
   private final String source;
-
   /** 目标关联表（通常指有外键引用的那张表）的名称。 */
   private final String target;
-
   
   public Association(String source, String target) {
     this.source = source;
@@ -41,5 +35,4 @@ public class Association implements Serializable {
   public int hashCode() {
     return toString().hashCode();
   }
-
 }
