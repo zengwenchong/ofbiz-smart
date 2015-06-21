@@ -171,10 +171,11 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
         this.driver = driverToUse;
       }
 
-
+      
+      
       String user = username;
       if(user != null){
-        props.put("username", user);
+        props.put("user", user);
       }else{
         Log.w(tag, "DataSource configured without a 'username'");
       }
@@ -237,10 +238,18 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
 
   public void setUsername(String username) {
     this.username = username;
+    if(props == null){
+      props = new Properties();
+    }
+    props.put("user", this.username);
   }
 
   public void setPassword(String password) {
     this.password = password;
+    if(props == null){
+      props = new Properties();
+    }
+    props.put("password", this.password);
   }
 
   public void setUrl(String url) {
