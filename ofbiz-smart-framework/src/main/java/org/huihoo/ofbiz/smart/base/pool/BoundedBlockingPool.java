@@ -14,9 +14,9 @@ import org.huihoo.ofbiz.smart.base.util.Log;
  * 有界：即对象池容量是有限的。
  * </p>
  * 
- * @author huangbaihua
+ * @author  huangbaihua
  * @version 1.0
- * @since 1.0
+ * @since   1.0
  * @param <T> 池中的对象类型
  */
 public class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingPool<T> {
@@ -29,13 +29,13 @@ public class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingP
   private ObjectFactory<T> objectFactory;
   /** 对象池 */
   private BlockingQueue<T> objectPool;
-  /** 后台执行线程 */
+  /** 后台执行线程，负责回收对象 */
   private ExecutorService executor = Executors.newCachedThreadPool();
-  /** 对象池是否关闭的标志 */
+  /** 对象池是否关闭的标志，默认为<code>false</code> */
   private volatile boolean isShutDown = false;
 
   /**
-   * 
+   * 构造方法
    * @param size 指定的池大小
    * @param validator 对象验证接口
    * @param objectFactory 对象创建工厂
@@ -50,7 +50,7 @@ public class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingP
   }
 
   /**
-   * 清理资源
+   * 清理池中的资源
    */
   private void clearResources() {
     for (T t : objectPool) {

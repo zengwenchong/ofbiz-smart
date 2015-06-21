@@ -2,7 +2,13 @@ package org.huihoo.ofbiz.smart.base.pool;
 
 /**
  * <p>
- *  抽象池接口,它实现了{@link GenericPool}。并增加了对象池实现接口需要额外实现的其他接口。
+ *  抽象池接口,它实现了{@link GenericPool}接口。<br/>
+ *  它定义了对象池实现方需要额外实现的接口。
+ *  <ul>
+ *      <li>{@link AbstractPool#isValid(Object)}</li>
+ *      <li>{@link AbstractPool#returnToPool(Object)}</li>
+ *      <li>{@link AbstractPool#handleInvalidReturn(Object)}</li>
+ *  </ul>
  * </p>
  * 
  * @author huangbaihua

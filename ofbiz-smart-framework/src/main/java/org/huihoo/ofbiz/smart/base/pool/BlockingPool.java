@@ -24,7 +24,7 @@ public interface BlockingPool<T> extends GenericPool<T> {
    * </p>
    * <p>
    * 该调用为阻塞调用，客户端线程会等待指定时间直到对象可用或超时发生。<br/>
-   * 该调用实现是一种公平算法，它确保调用是一种先到先服务(FCFS)的机制.
+   * 该调用实现了一种公平算法，它确保调用先到先服务(FCFS)。
    * </p>
    * <p>
    * 建议客户端对该调用抛出的<code>InterruptedException</code>有所处理。<br/>
