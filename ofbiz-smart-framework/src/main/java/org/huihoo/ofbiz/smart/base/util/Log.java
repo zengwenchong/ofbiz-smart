@@ -18,11 +18,11 @@ public final class Log {
 
   public static final Object[] emptyArgs = new Object[0];
   
-  public static final int DEBUG = 0;
-  public static final int TRACE = 1;
-  public static final int INFO = 2;
-  public static final int WARN = 3;
-  public static final int ERROR = 4;
+  private static final int DEBUG = 0;
+  private static final int TRACE = 1;
+  private static final int INFO = 2;
+  private static final int WARN = 3;
+  private static final int ERROR = 4;
   
   
   
