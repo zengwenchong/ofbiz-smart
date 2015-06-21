@@ -42,5 +42,10 @@ public class JdbcConnectionFactory implements ObjectFactory<Connection> {
       return null;
     }
   }
+  
+  @Override
+  public String toString(){
+    return "JdbcConnectionFactory["+hashCode()+"]";
+  }
 
 }

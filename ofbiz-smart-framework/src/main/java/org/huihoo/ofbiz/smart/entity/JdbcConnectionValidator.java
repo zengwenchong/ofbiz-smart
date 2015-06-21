@@ -41,5 +41,10 @@ public class JdbcConnectionValidator implements Validator<Connection> {
     } catch (SQLException ingore) {
     }
   }
+  
+  @Override
+  public String toString(){
+    return "JdbcConnectionValidator["+hashCode()+"]";
+  }
 
 }
