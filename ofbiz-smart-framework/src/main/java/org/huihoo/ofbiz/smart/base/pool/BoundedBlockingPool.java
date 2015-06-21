@@ -1,11 +1,14 @@
 package org.huihoo.ofbiz.smart.base.pool;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
+import org.huihoo.ofbiz.smart.C;
 import org.huihoo.ofbiz.smart.base.util.Log;
 
 /**
@@ -142,5 +145,37 @@ public class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingP
   @Override
   protected boolean isValid(T t) {
     return validator.isValid(t);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void staticsInfo() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Pool Statics Info:").append(C.LINE_SEPARATOR);
+    sb.append(String.format("Pool size [%s]",size)).append(C.LINE_SEPARATOR);
+    sb.append(String.format("Object factory [%s]",objectFactory)).append(C.LINE_SEPARATOR);
+    sb.append(String.format("Object validator [%s]",validator)).append(C.LINE_SEPARATOR);
+    sb.append("object in the pool:").append(C.LINE_SEPARATOR);
+    for(T t : objectPool){
+      sb.append(t.toString()).append(C.LINE_SEPARATOR);
+    }
+    Log.i(tag, sb.toString());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<T> getAllObject() {
+    List<T> objectList = new ArrayList<>();
+    if(isShutDown)
+      return objectList;
+    
+    for(T t : objectPool){
+      objectList.add(t);
+    }
+    return objectList;
   }
 }

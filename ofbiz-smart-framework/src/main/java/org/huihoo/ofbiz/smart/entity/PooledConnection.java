@@ -353,7 +353,7 @@ public class PooledConnection<C extends Connection> implements Connection {
     if(conn != null){
       try{
         if(conn.isClosed()){
-          s = "connection is closed";
+          s = "Connection is closed.";
         }else{
           StringBuilder sb = new StringBuilder();
           sb.append(hashCode());
@@ -361,7 +361,7 @@ public class PooledConnection<C extends Connection> implements Connection {
           if(meta != null){
             sb.append(",URL=");
             sb.append(meta.getURL());
-            sb.append(",Username=");
+            sb.append(",UserName=");
             sb.append(meta.getUserName());
             sb.append(",");
             sb.append(meta.getDriverName());

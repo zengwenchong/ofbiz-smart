@@ -1,5 +1,7 @@
 package org.huihoo.ofbiz.smart.base.pool;
 
+import java.util.List;
+
 /**
  * <p>
  * 一般对象池接口 <br/>
@@ -38,6 +40,17 @@ public interface GenericPool<T> {
    * 关闭对象池
    */
   void shutDown();
+  
+  /**
+   * 获取池中当前所有的对象
+   * @return 当有所有在池中的对象集合
+   */
+  List<T> getAllObject();
+  
+  /**
+   * 池的统计信息
+   */
+  void staticsInfo();
 
   /**
    * <p>

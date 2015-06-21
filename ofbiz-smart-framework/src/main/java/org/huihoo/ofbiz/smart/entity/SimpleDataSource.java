@@ -8,6 +8,8 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -29,8 +31,10 @@ import org.huihoo.ofbiz.smart.base.util.Log;
  *   dataSource.setDriverClassName("org.h2.Driver");
  *   <code style="color:#0c0">//... 设置连接字符串</code>
  *   dataSource.setUrl("jdbc:h2:mem:tests;DB_CLOSE_DELAY=-1");
- *   <code style="color:#0c0">//... 设置其它配置项</code>
- *   dataSource.setConnectionProperties("username=sa;password=");
+ *   <code style="color:#0c0">//... 设置用户名</code>
+ *   dataSource.setUserName("sa");
+ *   <code style="color:#0c0">//... 设置用户密码</code>
+ *   dataSource.setPassword("");
  *   <code style="color:#0c0">//... 设置连接数</code>
  *   dataSource.setMaxConnections(10);
  *   <code style="color:#0c0">//... 获取连接</code>
@@ -38,9 +42,9 @@ import org.huihoo.ofbiz.smart.base.util.Log;
  *   <code style="color:#0c0">//... 接下来，你自己的操作.:)</code>
  * </pre>
  * </p>
- * @author huangbaihua
+ * @author  huangbaihua
  * @version 1.0
- * @since 1.0
+ * @since   1.0
  */
 public class SimpleDataSource implements DataSource, AutoCloseable {
   public static final String tag = SimpleDataSource.class.getName();
@@ -53,7 +57,7 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
   /** 数据库驱动 */
   private Driver driver = null;
   /** 连接的用户名*/
-  private String username;
+  private String userName;
   /** 连接的用户密码 */
   private String password;
   /** 连接字符串 */
@@ -173,7 +177,7 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
 
       
       
-      String user = username;
+      String user = userName;
       if(user != null){
         props.put("user", user);
       }else{
@@ -202,6 +206,30 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
     }
   }
 
+  /**
+   * 统计数据源的一些信息
+   */
+  public void info(){
+    if(closed){
+      Log.w(tag, "DataSource is closed.");
+      return ;
+    }
+    pool.staticsInfo();
+  }
+  
+  /**
+   * 获取当前可用的连接
+   * @return 当前可用连接的集合
+   */
+  public List<Connection> getAllActiveConns(){
+    List<Connection> activeConns = new ArrayList<>();
+    if(closed){
+      return activeConns;
+    }
+    
+    activeConns = pool.getAllObject();
+    return activeConns;
+  }
 
 
   public String getDriverClassName() {
@@ -212,8 +240,8 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
     return driver;
   }
 
-  public String getUsername() {
-    return username;
+  public String getUserName() {
+    return userName;
   }
 
   public String getPassword() {
@@ -236,12 +264,12 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
     this.driver = driver;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setUserName(String userName) {
+    this.userName = userName;
     if(props == null){
       props = new Properties();
     }
-    props.put("user", this.username);
+    props.put("user", this.userName);
   }
 
   public void setPassword(String password) {
