@@ -20,19 +20,20 @@ public class EntityConfiguration implements Configuration {
   private Properties properties = new Properties();
   private Map<String, Dialect> dialects = new CaseInsensitiveMap<>();
   
-  public EntityConfiguration() {}
-
-  @Override
-  public Properties getConfig() {
+  public EntityConfiguration() {
     try {
       InputStream in = getClass().getResourceAsStream("/entity.properties");
       if (in != null) {
         properties.load(in);
       }
-      return properties;
     } catch (IOException e) {
       throw new EntityException(e);
     }
+  }
+
+  @Override
+  public Properties getConfig() {
+    return properties;
   }
 
   @Override
