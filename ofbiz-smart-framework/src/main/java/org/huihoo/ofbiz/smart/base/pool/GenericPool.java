@@ -57,10 +57,10 @@ public interface GenericPool<T> {
    * 池对象验证器接口 它主要负责验证池中对象是否有效可用，如果已经失效，也便于之后对象池执行对象的清理。
    * </p>
    * 
-   * @author huangbaihua
+   * @author  huangbaihua
    * @version 1.0
-   * @since 1.0
-   * @param <T>
+   * @since   1.0
+   * @param <T> 要验证的对象类型
    */
   public static interface Validator<T> {
     /**

@@ -5,9 +5,9 @@ package org.huihoo.ofbiz.smart.base.pool;
  * 对象工厂接口.负责对象的创建
  * </p>
  * 
- * @author huangbaihua
+ * @author  huangbaihua
  * @version 1.0
- * @since 1.0
+ * @since   1.0
  * @param <T> 要创建的对象类型
  */
 public interface ObjectFactory<T> {

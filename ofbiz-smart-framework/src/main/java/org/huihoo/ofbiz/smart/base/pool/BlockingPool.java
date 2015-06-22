@@ -7,8 +7,9 @@ import java.util.concurrent.TimeUnit;
  * 基于阻塞的对象池接口
  * </p>
  * 
- * @author huangbaihua
- * 
+ * @author  huangbaihua
+ * @version 1.0
+ * @since   1.0
  * @param <T> 池中的对象类型
  */
 public interface BlockingPool<T> extends GenericPool<T> {

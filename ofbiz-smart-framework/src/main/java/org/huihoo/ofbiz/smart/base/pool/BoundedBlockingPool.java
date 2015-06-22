@@ -106,8 +106,9 @@ public class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingP
   @Override
   public T get(long timeout, TimeUnit unit) throws InterruptedException {
     if (isShutDown) {
-      Log.w(tag, "The object pool is already shutdown.");
-      throw new IllegalStateException("The object pool is already shutdown.");
+      String msg = "The object pool is already shutdown.";
+      Log.w(tag, msg);
+      throw new IllegalStateException(msg);
     }
 
     T t = null;
@@ -126,7 +127,7 @@ public class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingP
    */
   @Override
   protected void handleInvalidReturn(T t) {
-
+    //TODO How to handle invalid returned object? Is it necessary?
   }
 
   /**

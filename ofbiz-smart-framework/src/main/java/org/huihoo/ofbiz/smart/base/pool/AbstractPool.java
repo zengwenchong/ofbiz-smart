@@ -11,9 +11,9 @@ package org.huihoo.ofbiz.smart.base.pool;
  *  </ul>
  * </p>
  * 
- * @author huangbaihua
+ * @author  huangbaihua
  * @version 1.0
- * @since 1.0
+ * @since   1.0
  * @param <T> 池中的对象类型
  */
 public abstract class AbstractPool<T> implements GenericPool<T> {
