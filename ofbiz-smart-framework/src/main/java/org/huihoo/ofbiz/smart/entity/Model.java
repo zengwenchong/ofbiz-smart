@@ -34,6 +34,12 @@ public abstract class Model implements Externalizable {
   private Map<String, Object> attributes = new CaseInsensitiveMap<>();
   /** 被操作或修改的属性集合 */
   private final Set<String> modifiedAttributeNames = new CaseInsensitiveSet();
+  /** 回调集合 */
+  private final List<Callback<Model>> callbacks = new ArrayList<>();
+  
+  private Map<String,ColumnMetadata> columnMetadata;
+  
+  
   public Model(){
   }
   
@@ -141,5 +147,10 @@ public abstract class Model implements Externalizable {
   @Override
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
   }
-
+  
+  @Override
+  public String toString(){
+    StringBuilder sb = new StringBuilder();
+    return sb.toString();
+  }
 }
