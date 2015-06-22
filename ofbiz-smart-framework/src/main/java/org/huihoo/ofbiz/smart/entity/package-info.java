@@ -7,7 +7,7 @@
  *  参考:<br/>
  *  1. 设计思想参考了<a href='http://guides.rubyonrails.org'>Ruby On Rails Guides</a><br/>
  *  2. 具体实现部分参考了<a href='https://github.com/javalite/activejdbc'>javalite activejdbc</a>。<br/>
- *     在它的基础上，结合实际情况进行了简化，重构。总体上控制代码的规模，毕竟它还是很庞大的。<br/>
+ *     在它(毕竟它的代码库还是较为庞大的)的基础上，结合实际情况进行了简化，重构。总体上控制代码的规模，保证框架的小巧实用。<br/>
  * </p>
  * 
  * @author huangbaihua

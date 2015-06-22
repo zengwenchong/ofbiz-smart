@@ -1,5 +1,5 @@
 package org.huihoo.ofbiz.smart.entity.dialect;
 
-public class OracleDialect implements Dialect {
+public class OracleDialect extends Dialect {
 
 }
