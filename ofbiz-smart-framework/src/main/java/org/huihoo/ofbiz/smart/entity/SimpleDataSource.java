@@ -135,8 +135,8 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
    * @throws SQLException
    */
   protected DataSource createDataSource() throws SQLException {
-    if (closed) throw new SQLException("The Data source is closed.");
-
+    if (closed) throw new SQLException("The DataSource is closed.");
+    
     if (dataSource != null) {
       return dataSource;
     }
@@ -145,7 +145,6 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
       if (dataSource != null) return dataSource;
 
       Driver driverToUse = this.driver;
-      
       if (driverToUse == null) {
         Class<?> driverFromCCL = null;
         if (driverClassName != null) {
@@ -171,12 +170,9 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
                   driverClassName != null ? driverClassName : "", url);
           throw new SQLException(e);
         }
-        
         this.driver = driverToUse;
       }
 
-      
-      
       String user = userName;
       if(user != null){
         props.put("user", user);
@@ -198,10 +194,9 @@ public class SimpleDataSource implements DataSource, AutoCloseable {
         dataSource = new PooledDataSource<>(pool);
         dataSource.setLogWriter(logWriter);
       } catch (SQLException e) {
-        Log.e(e,tag, "Cannot create datasource.");
+        Log.e(e,tag, "Cannot create a datasource.");
         throw new SQLException(e);
       }
-
       return dataSource;
     }
   }
