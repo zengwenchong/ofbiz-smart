@@ -14,23 +14,23 @@ package org.huihoo.ofbiz.smart.entity;
  */
 public interface Callback<T extends Model> {
 
-  void beforeValidation(T m);
+  public void beforeValidation(T m);
 
-  void afterValidation(T m);
+  public void afterValidation(T m);
 
-  void beforeCreate(T m);
+  public void beforeCreate(T m);
 
-  void afterCreate(T m);
+  public void afterCreate(T m);
 
-  void beforeSave(T m);
+  public void beforeSave(T m);
 
-  void afterSave(T m);
+  public void afterSave(T m);
 
-  void beforeUpdate(T m);
+  public void beforeUpdate(T m);
 
-  void afterUpdate(T m);
+  public void afterUpdate(T m);
 
-  void beforeDelete(T m);
+  public void beforeDelete(T m);
 
-  void afterDelete(T m);
+  public void afterDelete(T m);
 }
