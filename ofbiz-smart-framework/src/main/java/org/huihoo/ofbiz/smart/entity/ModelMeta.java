@@ -15,22 +15,32 @@ import org.huihoo.ofbiz.smart.entity.association.Association;
 
 /**
  * <p>
- * {@link Model}的元数据据
+ * {@link Model}的元数据
  * </p>
  * 
- * @author huangbaihua
+ * @author  huangbaihua
  * @version 1.0
- * @since 1.0
+ * @since   1.0
  */
 public class ModelMeta implements Serializable {
   private static final long serialVersionUID = 1L;
-
-  private List<Association> associations = new ArrayList<>();
-  private final String idName;
-  private final String tableName, dbType, dbName;
+  /** 模型Class */
   private final Class<? extends Model> modelClass;
-  private final String idGeneratorCode;
+  /** 未包含ID的属性集 */
   private Set<String> attributeNamesNoId;
+  /** 关联关系集合 */
+  private List<Association> associations = new ArrayList<>();
+  /** 主键名称 */
+  private final String idName;
+  /** 表名称 */
+  private final String tableName;
+  /** 数据库类型 */
+  private final String dbType;
+  /** 数据库名称 */
+  private final String dbName;
+  /** ID生成器代码 */
+  private final String idGeneratorCode;
+  
 
   public ModelMeta(String dbName, Class<? extends Model> modelClass, String dbType) {
     this.modelClass = modelClass;
