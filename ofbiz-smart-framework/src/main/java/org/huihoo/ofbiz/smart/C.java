@@ -15,4 +15,6 @@ public interface C {
   public final static String LINE_SEPARATOR = System.getProperty("line.separator");
   /** 文件分隔符 */
   public final static String FILE_SEPARATOR = System.getProperty("file.separator");
+  /** UTF-8 */
+  public final static String UTF_8 = "UTF-8";
 }

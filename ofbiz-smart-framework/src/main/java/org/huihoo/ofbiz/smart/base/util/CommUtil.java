@@ -1,7 +1,13 @@
 package org.huihoo.ofbiz.smart.base.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.huihoo.ofbiz.smart.C;
 
 public class CommUtil {
 
@@ -36,5 +42,22 @@ public class CommUtil {
     }
     // 3.转换成小写并返回
     return b.toString().toLowerCase();
+  }
+  
+  
+  public static String readContent(InputStream is){
+    StringBuilder sb = new StringBuilder();
+    try{
+      InputStreamReader isr = new InputStreamReader(is, C.UTF_8);
+      BufferedReader br = new BufferedReader(isr);
+      String line = br.readLine();
+      while(line != null){
+        sb.append(line).append(C.LINE_SEPARATOR);
+        line = br.readLine();
+      }
+    }catch(IOException e){
+      e.printStackTrace();
+    }
+    return sb.toString();
   }
 }
