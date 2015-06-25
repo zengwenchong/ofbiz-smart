@@ -17,4 +17,6 @@ public interface C {
   public final static String FILE_SEPARATOR = System.getProperty("file.separator");
   /** UTF-8 */
   public final static String UTF_8 = "UTF-8";
+  /** 默认数据源提供类*/
+  public final static String DEF_DATASOURCE_PROVIDER = "org.huihoo.ofbiz.smart.entity.SimpleDataSource";
 }
