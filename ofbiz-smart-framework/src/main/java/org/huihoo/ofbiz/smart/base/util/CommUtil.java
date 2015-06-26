@@ -5,11 +5,52 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.huihoo.ofbiz.smart.C;
 
 public class CommUtil {
+
+  public static boolean isNotEmpty(Object value) {
+    return !isEmpty(value);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static boolean isEmpty(Object value) {
+    if (value == null) {
+      return true;
+    }
+    if (value instanceof String) {
+      return ((String) value).length() == 0;
+    }
+    if (value instanceof Object[]) {
+      return ((Object[]) value).length == 0;
+    }
+    if (value instanceof Collection) {
+      return ((Collection<? extends Object>) value).size() == 0;
+    }
+    if (value instanceof Map) {
+      return ((Map<? extends Object, ? extends Object>) value).size() == 0;
+    }
+    if (value instanceof CharSequence) {
+      return ((CharSequence) value).length() == 0;
+    }
+    if (value instanceof Boolean) {
+      return false;
+    }
+    if (value instanceof Number) {
+      return false;
+    }
+    if (value instanceof Character) {
+      return false;
+    }
+    if (value instanceof java.util.Date) {
+      return false;
+    }
+    return false;
+  }
 
   /**
    * <p>
@@ -43,19 +84,19 @@ public class CommUtil {
     // 3.转换成小写并返回
     return b.toString().toLowerCase();
   }
-  
-  
-  public static String readContent(InputStream is){
+
+
+  public static String readContent(InputStream is) {
     StringBuilder sb = new StringBuilder();
-    try{
+    try {
       InputStreamReader isr = new InputStreamReader(is, C.UTF_8);
       BufferedReader br = new BufferedReader(isr);
       String line = br.readLine();
-      while(line != null){
+      while (line != null) {
         sb.append(line).append(C.LINE_SEPARATOR);
         line = br.readLine();
       }
-    }catch(IOException e){
+    } catch (IOException e) {
       e.printStackTrace();
     }
     return sb.toString();
