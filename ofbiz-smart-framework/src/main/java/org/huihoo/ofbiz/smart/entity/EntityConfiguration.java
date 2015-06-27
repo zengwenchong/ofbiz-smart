@@ -39,9 +39,8 @@ public class EntityConfiguration implements Configuration {
       if (in != null) {
         properties.load(in);
       }
-      
-      dataSourceCreator = (DataSourceCreator<String,DataSource>) 
-                              Class.forName(properties.getProperty("datasource.creator.class")).newInstance();
+      String creatorClazz = properties.getProperty("datasource.creator.class");
+      dataSourceCreator = (DataSourceCreator<String,DataSource>)Class.forName(creatorClazz).newInstance();
       dataSources.putAll(dataSourceCreator.createDataSources(properties));
     } catch (IOException e) {
       throw new EntityException(e);
@@ -102,5 +101,9 @@ public class EntityConfiguration implements Configuration {
       dialects.put(mm.getDbType(), dialect);
     }
     return dialect;
+  }
+
+  public Map<String, DataSource> getDataSources() {
+    return dataSources;
   }
 }

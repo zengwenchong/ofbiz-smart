@@ -19,4 +19,6 @@ public interface C {
   public final static String UTF_8 = "UTF-8";
   /** 默认数据源提供类*/
   public final static String DEF_DATASOURCE_PROVIDER = "org.huihoo.ofbiz.smart.entity.SimpleDataSource";
+  public final static String MODEL_BASE_PACKAGE_NAME = "model.base.package";
+  public final static String MODEL_CLASSES_FILE_NAME = "model.classes.file";
 }
