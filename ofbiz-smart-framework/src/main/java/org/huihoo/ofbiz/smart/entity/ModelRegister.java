@@ -118,7 +118,7 @@ public class ModelRegister implements C{
     }
     //如果还是为空，再试一下表名小写
     if(CommUtil.isEmpty(columns)){
-      rs = databaseMetaData.getColumns(null, schema, tableName.toUpperCase(), null);
+      rs = databaseMetaData.getColumns(null, schema, tableName.toLowerCase(), null);
       columns = getColumns(rs, dbProduct);
       rs.close();
     }
