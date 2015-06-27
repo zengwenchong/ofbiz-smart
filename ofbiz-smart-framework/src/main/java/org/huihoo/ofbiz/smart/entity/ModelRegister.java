@@ -54,10 +54,11 @@ public class ModelRegister implements C{
     while (iter.hasNext()) {
       Entry<String, DataSource> it = iter.next();
       String dataSourceName = it.getKey();
-      Log.i(tag, "Initialize models from datasource : " + dataSourceName);
+      Log.i(tag, "Mapping models from datasource : " + dataSourceName);
       DataSource ds = it.getValue();
+      Connection con = null;
       try {
-        Connection con = ds.getConnection();
+        con = ds.getConnection();
         if (con == null) {
           Log.w(tag, "Cannot get connection from datasource : " + dataSourceName);
           continue;
@@ -75,6 +76,13 @@ public class ModelRegister implements C{
         
       } catch (SQLException e) {
         Log.w(tag, "Cannot get connection from datasource : " + it.getKey());
+      } finally{
+        if(con != null){
+          try {
+            con.close();
+          } catch (SQLException e) {
+          }
+        }
       }
     }
   }
