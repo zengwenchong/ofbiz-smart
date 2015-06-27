@@ -37,7 +37,7 @@ public abstract class Model implements Externalizable {
   /** 回调集合 */
   private final List<Callback<Model>> callbacks = new ArrayList<>();
   
-  private Map<String,ColumnMetadata> columnMetadata;
+  private ModelMeta modelMeta;
   
   
   public Model(){
@@ -139,6 +139,18 @@ public abstract class Model implements Externalizable {
   public void setBigDecimal(String attrName,Object value){
     
   }
+  
+  public <T extends Model> T set(Object... namesAndValues) {
+    return (T) this;
+  }
+  
+  //===============================================================
+  //                    Model持久化相关方法
+  //===============================================================
+  public boolean save(){
+    return false;
+  }
+  
   
   @Override
   public void writeExternal(ObjectOutput out) throws IOException {
