@@ -36,6 +36,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.avaje</groupId>
+			<artifactId>avaje-agentloader</artifactId>
+		</dependency>  
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
