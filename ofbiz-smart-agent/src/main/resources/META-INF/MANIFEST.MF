@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: huangbaihua
+Build-Jdk: 1.7.0_51
+build-version: 4.1.2
+Premain-Class: org.huihoo.ofbiz.smart.agent.Transformer
+Agent-Class: org.huihoo.ofbiz.smart.agent.Transformer
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
