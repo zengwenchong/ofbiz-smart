@@ -72,17 +72,24 @@
 				<version>${logback.classic.version}</version>
 			</dependency>
 			<!-- sl4fj end -->
-			
+
 			<dependency>
 				<artifactId>asm-all</artifactId>
 				<groupId>org.ow2.asm</groupId>
 				<version>${asm.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.avaje</groupId>
 				<artifactId>avaje-agentloader</artifactId>
 				<version>${avaje.agentloader.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.huihoo</groupId>
+				<artifactId>ofbiz-smart-agent</artifactId>
+				<version>1.0.0</version>
 			</dependency>
 
 			<dependency>
@@ -127,6 +134,21 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestFile>
+							src/main/resources/META-INF/MANIFEST.MF
+						</manifestFile>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
@@ -212,4 +234,13 @@
 		<module>ofbiz-smart-universal-biz</module>
 		<module>ofbiz-smart-agent</module>
 	</modules>
+
+
+	<repositories>
+		<repository>
+			<id>thirdparty</id>
+			<name>thirdparty</name>
+			<url>http://182.254.177.125:8081/nexus/content/repositories/thirdparty/</url>
+		</repository>
+	</repositories>
 </project>
