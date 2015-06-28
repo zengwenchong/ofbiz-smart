@@ -30,6 +30,10 @@
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 
+		<dependency>
+			<artifactId>asm-all</artifactId>
+			<groupId>org.ow2.asm</groupId>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
