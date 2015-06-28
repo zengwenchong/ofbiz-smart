@@ -143,6 +143,18 @@ public abstract class Model implements Externalizable {
   public <T extends Model> T set(Object... namesAndValues) {
     return (T) this;
   }
+  /**
+   * <p>
+   *    获取<code>Model</code>的实现类,该方法要求运行时动态转换原来的<code>Model</code>实现类，在该方法中加入实际的<code>Model</code>实现类
+   * </p>
+   * <p>
+   *    
+   * </p>
+   * @return  成功转换返回真正的<code>Model</code>实现类;如果未转换，抛出<code>EntityException</code>
+   */
+  private static <T extends Model> Class<T> modelClass() {
+    throw new EntityException("Faild to determine Model class name,models have been instrumented?");
+  }
   
   //===============================================================
   //                    Model持久化相关方法
