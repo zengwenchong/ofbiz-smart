@@ -152,7 +152,7 @@ public abstract class Model implements Externalizable {
    * </p>
    * @return  成功转换返回真正的<code>Model</code>实现类;如果未转换，抛出<code>EntityException</code>
    */
-  private static <T extends Model> Class<T> modelClass() {
+  protected <T extends Model> Class<T> modelClass() {
     throw new EntityException("Faild to determine Model class name,models have been instrumented?");
   }
   
@@ -160,6 +160,7 @@ public abstract class Model implements Externalizable {
   //                    Model持久化相关方法
   //===============================================================
   public boolean save(){
+    modelClass();
     return false;
   }
   
