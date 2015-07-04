@@ -7,7 +7,6 @@ import java.net.URL;
 import java.security.ProtectionDomain;
 
 import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -17,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 
 
-public class Transformer implements ClassFileTransformer,Opcodes {
+public class Transformer implements ClassFileTransformer,Opcodes,Constants {
   private static final Logger log = LoggerFactory.getLogger(Transformer.class);
   private IgnoreClassHelper ignoreClassHelper;
 
@@ -50,26 +49,32 @@ public class Transformer implements ClassFileTransformer,Opcodes {
           ProtectionDomain protectionDomain, byte[] classfileBuffer)
           throws IllegalClassFormatException {
     try{
+      // ignore JDK and dependency classes
       if(ignoreClassHelper.isIgnoreClass(className)){
         log.debug("ingore class : " + className);
         return null;
       }
+      
       ClassWriter cw = new ClassWriter(0);
-      ClassVisitor cv = new EnhanceModelAdapter(Opcodes.ASM5, cw);
+      EnhanceModelAdapter adapter = new EnhanceModelAdapter(Opcodes.ASM5, cw);
       ClassReader cr = new ClassReader(classfileBuffer);
-      cr.accept(cv, 0);
+      cr.accept(adapter, 0);
       
-      String parentCName = "org/huihoo/ofbiz/smart/entity/Model";
-      String convertCName = className.replaceAll("\\.", "/");
-      String cType = "L"+convertCName+";";
-      MethodVisitor mv = null;
-      mv = cw.visitMethod(ACC_PROTECTED, "modelClass", "()Ljava/lang/Class;", "<T:L"+parentCName+";>()Ljava/lang/Class<TT;>;", null);
-      mv.visitCode();
-      mv.visitLdcInsn(Type.getType(cType));
-      mv.visitInsn(ARETURN);
-      mv.visitMaxs(1, 1);
-      mv.visitEnd();
-      
+      if (adapter.isModel()) {
+        if (adapter.isEnhanced()) {
+          log.debug("already enhanced model");
+        } else {
+          String convertCName = className.replaceAll("\\.", "/");
+          String cType = "L"+convertCName+";";
+          MethodVisitor mv = null;
+          mv = cw.visitMethod(ACC_PROTECTED, "modelClass", "()Ljava/lang/Class;", "<T:L"+MODEL+";>()Ljava/lang/Class<TT;>;", null);
+          mv.visitCode();
+          mv.visitLdcInsn(Type.getType(cType));
+          mv.visitInsn(ARETURN);
+          mv.visitMaxs(1, 1);
+          mv.visitEnd();
+        }
+      }
       return cw.toByteArray();
     }catch(Exception e){
       log.error(e.getMessage(), e);

@@ -12,7 +12,11 @@ import org.slf4j.LoggerFactory;
 public class EnhanceModelAdapter extends ClassVisitor {
   private static final Logger log = LoggerFactory.getLogger(EnhanceModelAdapter.class);
 
+  private String className;
 
+  private boolean model;
+  private boolean modelAbstract;
+  private boolean enhanced;
 
   public EnhanceModelAdapter(int api, ClassVisitor cv) {
     super(Opcodes.ASM5, cv);
@@ -21,8 +25,16 @@ public class EnhanceModelAdapter extends ClassVisitor {
   @Override
   public void visit(int version, int access, String name, String signature, String superName,
           String[] interfaces) {
-    log.debug("visit>" + ((access & Opcodes.ACC_INTERFACE)) + " " + version + " " + access + " "
-            + superName + " " + name);
+    if ((access & Opcodes.ACC_INTERFACE) != 0) {
+      throw new RuntimeException(name + " is an Interface");
+    }
+
+    className = name;
+    if (Constants.MODEL.equals(superName)) {
+      modelAbstract = true;
+      model = true;
+    }
+    // Just only support JDK 1.7+
     super.visit(Opcodes.V1_7, access, name, signature, superName, interfaces);
   }
 
@@ -47,6 +59,48 @@ public class EnhanceModelAdapter extends ClassVisitor {
   public MethodVisitor visitMethod(int access, String name, String desc, String signature,
           String[] exceptions) {
     log.debug("visitMethod>" + desc + " " + name);
-    return super.visitMethod(access, name, desc, signature, exceptions);
+    if (Constants.MODEL_CLASS_METHOD_NAME.equals(name)) {
+      enhanced = true;
+    }
+    MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
+    return mv;
   }
+
+  public String getClassName() {
+    return className;
+  }
+
+  public boolean isModel() {
+    return model;
+  }
+
+
+
+  public void setClassName(String className) {
+    this.className = className;
+  }
+
+  public void setModel(boolean model) {
+    this.model = model;
+  }
+
+
+
+  public boolean isEnhanced() {
+    return enhanced;
+  }
+
+  public void setEnhanced(boolean enhanced) {
+    this.enhanced = enhanced;
+  }
+
+  public boolean isModelAbstract() {
+    return modelAbstract;
+  }
+
+  public void setModelAbstract(boolean modelAbstract) {
+    this.modelAbstract = modelAbstract;
+  }
+
+
 }
